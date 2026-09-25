@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<section class="hero">
+  <p class="hero-label">COMBAT DESIGN NOTES</p>
+  <h1 class="hero-title">게임을 하다 걸린 "왜 굳이?"를<br>끝까지 파고든 기록</h1>
+  <p class="hero-sub">전투 디자이너 길태민의 플레이 분석. 한 편에 질문 하나, 게임 하나만 다룹니다.</p>
+</section>
+
+<section class="post-list">
+  {% for post in site.posts %}
+  <a class="post-card" href="{{ post.url | relative_url }}">
+    <p class="card-game">{{ post.game }}</p>
+    <h2 class="card-title">{{ post.title }}</h2>
+    {% if post.summary %}<p class="card-summary">{{ post.summary }}</p>{% endif %}
+    <p class="card-date">{{ post.date | date: '%Y.%m.%d' }}</p>
+  </a>
+  {% endfor %}
+</section>
