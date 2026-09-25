@@ -5,26 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.summary | default: site.description }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700;900&display=swap">
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:description" content="{{ page.summary | default: site.description }}">
+  {% if page.thumb %}<meta property="og:image" content="{{ page.thumb | absolute_url }}">{% endif %}
+  <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
+  {% assign nav = page.nav | default: '' %}
+  {% if page.collection == 'posts' %}{% assign nav = 'notes' %}{% endif %}
+  {% if page.collection == 'portfolio' %}{% assign nav = 'portfolio' %}{% endif %}
   <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="{{ '/' | relative_url }}">길태민</a>
+    <div class="wrap-wide header-inner">
+      <a class="brand" href="{{ '/' | relative_url }}">길태민<span class="brand-role">Combat Designer</span></a>
       <nav>
-        <a href="{{ '/' | relative_url }}">분석</a>
-        <a href="{{ '/about/' | relative_url }}">소개</a>
+        <a href="{{ '/' | relative_url }}" {% if nav == 'home' %}class="on"{% endif %}>소개</a>
+        <a href="{{ '/pr/' | relative_url }}" {% if nav == 'pr' %}class="on"{% endif %}>PR</a>
+        <a href="{{ '/portfolio/' | relative_url }}" {% if nav == 'portfolio' %}class="on"{% endif %}>포트폴리오</a>
+        <a href="{{ '/notes/' | relative_url }}" {% if nav == 'notes' %}class="on"{% endif %}>기록</a>
       </nav>
     </div>
   </header>
-  <main class="wrap">
+  <main>
     {{ content }}
   </main>
   <footer class="site-footer">
-    <div class="wrap">© {{ site.time | date: '%Y' }} 길태민 · Combat Design</div>
+    <div class="wrap-wide footer-inner">
+      <div class="footer-nav">
+        <a href="{{ '/' | relative_url }}">소개</a>
+        <a href="{{ '/pr/' | relative_url }}">PR</a>
+        <a href="{{ '/portfolio/' | relative_url }}">포트폴리오</a>
+        <a href="{{ '/notes/' | relative_url }}">기록</a>
+      </div>
+      <span>© {{ site.time | date: '%Y' }} 길태민 · 게임 이미지와 영상의 저작권은 각 개발사에 있습니다.</span>
+    </div>
   </footer>
 </body>
 </html>
