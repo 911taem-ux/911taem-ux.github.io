@@ -1,0 +1,23 @@
+{% if include.youtube and include.youtube != "" %}
+<figure class="clip">
+  <div class="clip-frame">
+    <iframe src="https://www.youtube-nocookie.com/embed/{{ include.youtube }}?rel=0" title="{{ include.caption }}" loading="lazy" allowfullscreen></iframe>
+  </div>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>
+{% elsif include.src and include.src != "" %}
+<figure class="clip">
+  <img src="{{ include.src | relative_url }}" alt="{{ include.caption }}" loading="lazy">
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>
+{% else %}
+<figure class="clip clip-empty">
+  <div class="clip-frame">
+    <div class="clip-placeholder">
+      <span class="clip-icon">▶</span>
+      <span class="clip-label">클립 자리</span>
+      <span class="clip-desc">{{ include.caption }}</span>
+    </div>
+  </div>
+</figure>
+{% endif %}

@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<article class="post project">
+  <header class="post-head">
+    <div class="wrap">
+      <p class="post-kicker"><span>{{ page.kind }}</span></p>
+      <h1 class="post-title">{{ page.title }}</h1>
+      {% if page.summary %}<p class="post-lede">{{ page.summary }}</p>{% endif %}
+      <dl class="project-meta">
+        {% if page.role %}<div><dt>역할</dt><dd>{{ page.role }}</dd></div>{% endif %}
+        {% if page.period %}<div><dt>기간</dt><dd>{{ page.period }}</dd></div>{% endif %}
+        {% if page.tools %}<div><dt>도구</dt><dd>{{ page.tools }}</dd></div>{% endif %}
+      </dl>
+    </div>
+  </header>
+  {% if page.thumb %}
+  <div class="wrap-wide post-cover"><img src="{{ page.thumb | relative_url }}" alt=""></div>
+  {% endif %}
+  <div class="wrap post-body">
+    {{ content }}
+  </div>
+  <nav class="wrap post-nav">
+    <a class="prev" href="{{ '/portfolio/' | relative_url }}"><span>목록으로</span>포트폴리오 전체 보기</a>
+  </nav>
+</article>
