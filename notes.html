@@ -4,30 +4,17 @@ title: 기록
 nav: notes
 permalink: /notes/
 ---
-<div class="page-head">
-  <div class="wrap-wide">
-    <p class="hero-label">COMBAT DESIGN NOTES</p>
-    <h1 class="page-title">게임을 하다 걸린 "왜 굳이?"를<br>끝까지 파고든 기록</h1>
-    <p class="page-sub">한 편에 질문 하나, 게임 하나만 다룹니다.</p>
+<div class="wrap-list list-page">
+  <p class="list-label">NOTES</p>
+  <h1 class="list-title">파고든 <em>기록</em></h1>
+  {% assign cats = site.posts | map: 'topic' | uniq %}
+  <div class="tabs" role="tablist">
+    <button class="on" data-f="all">전체</button>{% for c in cats %}<button data-f="{{ c }}">{{ c }}</button>{% endfor %}
   </div>
-</div>
-
-<section class="wrap-wide">
-  <div class="list-head">
-    <h2>전체</h2>
-    <span>{{ site.posts | size }}편</span>
-  </div>
-  <div class="post-grid">
+  <div class="entries">
     {% for post in site.posts %}
-    <a class="post-card" href="{{ post.url | relative_url }}">
-      {% if post.thumb %}<div class="card-thumb"><img src="{{ post.thumb | relative_url }}" alt="" loading="lazy"></div>{% endif %}
-      <div class="card-body">
-        <p class="card-kicker">{{ post.game }}{% if post.topic %} · {{ post.topic }}{% endif %}</p>
-        <h3 class="card-title">{{ post.title }}</h3>
-        {% if post.summary %}<p class="card-summary">{{ post.summary }}</p>{% endif %}
-        <p class="card-date">{{ post.date | date: '%Y.%m.%d' }}{% if post.reading %} · {{ post.reading }}{% endif %}</p>
-      </div>
-    </a>
+    {% capture meta %}{{ post.date | date: '%Y. %m. %d.' }}<i>/</i>{{ post.topic }}<i>/</i>{{ post.game }}{% if post.reading %}<i>/</i>{{ post.reading }}{% endif %}{% endcapture %}
+    {% include entry.html item=post cat=post.topic meta=meta %}
     {% endfor %}
   </div>
-</section>
+</div>

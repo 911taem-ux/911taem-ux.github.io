@@ -40,5 +40,24 @@
       <span>© {{ site.time | date: '%Y' }} 길태민 · 게임 이미지와 영상의 저작권은 각 개발사에 있습니다.</span>
     </div>
   </footer>
+
+  <!-- 글 창 보기 -->
+  <div class="viewer" hidden>
+    <div class="viewer-backdrop" data-close></div>
+    <div class="viewer-win" role="dialog" aria-modal="true">
+      <div class="viewer-bar">
+        <span class="viewer-title"></span>
+        <div class="viewer-tools">
+          <button type="button" class="vt-full" title="화면 가득 보기">⛶ 전체 화면</button>
+          <a class="vt-page" href="#" title="이 글만 따로 열기">↗ 페이지로 열기</a>
+          <button type="button" class="vt-close" data-close aria-label="닫기">✕</button>
+        </div>
+      </div>
+      <div class="viewer-body"></div>
+    </div>
+  </div>
+  <!-- 이미지 크게 보기 -->
+  <div class="lightbox" hidden><img alt=""><p class="lightbox-cap"></p><button type="button" class="lb-close" aria-label="닫기">✕</button></div>
+  <script src="{{ '/assets/site.js' | relative_url }}" defer></script>
 </body>
 </html>

@@ -1,22 +1,21 @@
 ---
 layout: default
 ---
-<article class="post">
-  <header class="post-head">
-    <div class="wrap">
-      <p class="post-kicker"><span>{{ page.game }}</span>{% if page.topic %}<span class="dot">·</span><span>{{ page.topic }}</span>{% endif %}</p>
-      <h1 class="post-title">{{ page.title }}</h1>
-      {% if page.summary %}<p class="post-lede">{{ page.summary }}</p>{% endif %}
-      <p class="post-meta">{{ page.date | date: '%Y.%m.%d' }}{% if page.reading %} · {{ page.reading }}{% endif %}</p>
-    </div>
+<article class="article">
+  <header class="article-head">
+    <h1 class="article-title">{{ page.title }}</h1>
+    <p class="article-meta">
+      <span>{{ page.date | date: '%Y년 %-m월 %-d일' }}</span><i>/</i>
+      <a href="{{ '/notes/' | relative_url }}?f={{ page.topic | url_encode }}">{{ page.topic }}</a><i>/</i>
+      <span>{{ page.game }}</span>{% if page.reading %}<i>/</i><span>{{ page.reading }}</span>{% endif %}<i>/</i>
+      <button class="share" type="button">공유하기</button>
+    </p>
   </header>
-  {% if page.thumb %}
-  <div class="wrap-wide post-cover"><img src="{{ page.thumb | relative_url }}" alt=""></div>
-  {% endif %}
-  <div class="wrap post-body">
+  {% if page.thumb %}<figure class="article-cover"><img src="{{ page.thumb | relative_url }}" alt=""></figure>{% endif %}
+  <div class="post-body">
     {{ content }}
   </div>
-  <nav class="wrap post-nav">
+  <nav class="post-nav">
     {% if page.previous %}<a class="prev" href="{{ page.previous.url | relative_url }}"><span>이전 글</span>{{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
     {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}"><span>다음 글</span>{{ page.next.title }}</a>{% endif %}
   </nav>

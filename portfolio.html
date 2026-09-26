@@ -4,27 +4,18 @@ title: 포트폴리오
 nav: portfolio
 permalink: /portfolio/
 ---
-<div class="page-head">
-  <div class="wrap-wide">
-    <p class="hero-label">PORTFOLIO</p>
-    <h1 class="page-title">만든 것들</h1>
-    <p class="page-sub">현업에서 맡은 캐릭터와 시스템, 그리고 개인 프로젝트.</p>
+<div class="wrap-list list-page">
+  <p class="list-label">PORTFOLIO</p>
+  <h1 class="list-title">전투 기획 <em>포트폴리오</em></h1>
+  {% assign works = site.portfolio | sort: 'order' %}
+  {% assign cats = works | map: 'cat' | uniq %}
+  <div class="tabs" role="tablist">
+    <button class="on" data-f="all">전체</button>{% for c in cats %}<button data-f="{{ c }}">{{ c }}</button>{% endfor %}
   </div>
-</div>
-
-<section class="wrap-wide">
-  <div class="work-grid">
-    {% assign works = site.portfolio | sort: 'order' %}
+  <div class="entries">
     {% for w in works %}
-    <a class="work-card" href="{{ w.url | relative_url }}">
-      <div class="card-thumb"><img src="{{ w.thumb | relative_url }}" alt="" loading="lazy"></div>
-      <div class="card-body">
-        <p class="card-kicker">{{ w.kind }}</p>
-        <h3 class="card-title">{{ w.title }}</h3>
-        <p class="card-summary">{{ w.summary }}</p>
-        {% if w.tags %}<p class="card-tags">{% for t in w.tags %}<span>{{ t }}</span>{% endfor %}</p>{% endif %}
-      </div>
-    </a>
+    {% capture meta %}{{ w.cat }}<i>/</i>{{ w.role }}{% if w.period %}<i>/</i>{{ w.period }}{% endif %}{% endcapture %}
+    {% include entry.html item=w cat=w.cat meta=meta %}
     {% endfor %}
   </div>
-</section>
+</div>

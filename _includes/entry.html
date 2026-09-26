@@ -1,0 +1,9 @@
+<article class="entry" data-cat="{{ include.cat }}">
+  <a class="entry-thumb" href="{{ include.item.url | relative_url }}">{% if include.item.thumb %}<img src="{{ include.item.thumb | relative_url }}" alt="" loading="lazy">{% endif %}</a>
+  <div class="entry-body">
+    <h2 class="entry-title"><a href="{{ include.item.url | relative_url }}">{{ include.item.title }}</a></h2>
+    <p class="entry-meta">{{ include.meta }}</p>
+    <p class="entry-sum">{{ include.item.summary }}</p>
+    <a class="entry-more" href="{{ include.item.url | relative_url }}">더 보기 »</a>
+  </div>
+</article>
